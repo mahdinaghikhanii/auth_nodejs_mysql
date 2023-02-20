@@ -1,9 +1,11 @@
 const express = require('express')
-const userRoutes = express.Router();
+
 const sabzLearnDB = require('../db/sabzlearnDB');
 
+const userRoutes = express.Router();
 
-userRoutes.post('/', (req, res) => {
+
+userRoutes.post("/", (req, res) => {
     let date = new Date().toLocaleDateString('fa-IR');
     const body = req.body;
     sabzLearnDB.connect((err)=> {
@@ -11,7 +13,7 @@ userRoutes.post('/', (req, res) => {
             console.log("You have Error", err);
         }else{
             console.log("Connect to sablearnDB succesfulyy");
-            let newUserInsertQuery = `insert into users values (4 ${body.firstname},${body.lastname}, ${body.username}, ${body.password},${date})`;
+            let newUserInsertQuery = `insert into users values (null, "${body.firstname}","${body.lastname}",  "${body.password}", "${date}",${body.username})`;
             sabzLearnDB.query(newUserInsertQuery , (error , result)=> {
                 if(error){
                     console.log("Insert user fail",error);
