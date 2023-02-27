@@ -11,6 +11,6 @@ app.use('/api/users', userRoutes);
 
 
 app.listen(3000, ()=>{
-    conslog.log(s);
+
     console.log("web server is running")
 })
