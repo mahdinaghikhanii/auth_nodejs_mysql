@@ -1,7 +1,5 @@
 const express = require('express')
-
 const sabzLearnDB = require('../db/sabzlearnDB');
-
 const userRoutes = express.Router();
 
 
@@ -19,7 +17,7 @@ userRoutes.post("/new-user", (req, res) => {
                     console.log("Insert user fail",error);
                     res.send(null);
                 }else{
-                    console.log("One User Inserted");
+                    console.log("One User Inserted"); 
                     res.json("success add user!");
                 }
             })
@@ -50,5 +48,9 @@ userRoutes.get('/all-users', (req , res) => {
     })
     
 });
+
+userRoutes.post('/delete-user', (req ,res) => {
+    
+})
 
 module.exports = userRoutes;
