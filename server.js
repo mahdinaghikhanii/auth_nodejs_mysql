@@ -5,8 +5,7 @@ const cors = require('cors')
 const s ='2';
 
 const app = express();
-app.use(bodyParser.json())
-//app.use(cors())
+app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
 
 

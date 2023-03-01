@@ -25,7 +25,6 @@ userRoutes.post("/new-user", (req, res) => {
     }) 
 })
 
-
 userRoutes.get('/all-users', (req , res) => {
     sabzLearnDB.connect((err) => {
         if(err){
@@ -50,7 +49,26 @@ userRoutes.get('/all-users', (req , res) => {
 });
 
 userRoutes.post('/delete-user', (req ,res) => {
-    
+    const body = req.body;
+    sabzLearnDB.connect((err) => {
+        if(err){
+            console.log("Your have Error" , eer);
+        }else{
+            console.log("Connected Success");
+            let deleteQuery = `delete from users where firstname ='${body.firstname}', lastname = '${body.lastname}', password = '${body.password}'`;
+            sabzLearnDB.query(deleteQuery, (err, result)=> {
+                if(err){
+                    console.log("Delete user failed", err);
+                    res.json("Bad request");
+                }else{
+                    console.log("Delete user Success");
+                    res.jsonp("Delete User Success");
+                    res.end();
+                }
+
+            })
+        }
+    })
 })
 
 module.exports = userRoutes;
