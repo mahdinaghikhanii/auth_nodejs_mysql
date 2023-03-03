@@ -48,14 +48,15 @@ userRoutes.get('/all-users', (req , res) => {
     
 });
 
-userRoutes.post('/delete-user', (req ,res) => {
-    const body = req.body;
+userRoutes.delete('/delete-user', (req ,res) => {
+    const userId = req.params.userId;
     sabzLearnDB.connect((err) => {
         if(err){
             console.log("Your have Error" , eer);
+            
         }else{
             console.log("Connected Success");
-            let deleteQuery = `delete from users where firstname ='${body.firstname}', lastname = '${body.lastname}', password = '${body.password}'`;
+            let deleteQuery = `DELETE FROM users where id=${userId}`
             sabzLearnDB.query(deleteQuery, (err, result)=> {
                 if(err){
                     console.log("Delete user failed", err);
